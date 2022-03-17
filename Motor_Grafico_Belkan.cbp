@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Motor_Grafico_Belkan"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/manuel/practica1"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="practica1SG">
+				<Option output="/home/manuel/practica1/practica1SG" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/manuel/practica1"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/manuel/practica1/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 practica1SG"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="practica1SG/fast">
+				<Option output="/home/manuel/practica1/practica1SG" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/manuel/practica1"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/manuel/practica1/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 practica1SG/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/manuel/practica1"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="motorLib">
+				<Option output="/home/manuel/practica1/lib/libmotorLib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/manuel/practica1"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/manuel/practica1/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 motorLib"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="motorLib/fast">
+				<Option output="/home/manuel/practica1/lib/libmotorLib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/manuel/practica1"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/manuel/practica1/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 motorLib/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="obj3DLib">
+				<Option output="/home/manuel/practica1/lib/libobj3DLib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/manuel/practica1"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/manuel/practica1/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 obj3DLib"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="obj3DLib/fast">
+				<Option output="/home/manuel/practica1/lib/libobj3DLib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/manuel/practica1"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/manuel/practica1/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 obj3DLib/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/manuel/practica1"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="GLUILib">
+				<Option output="/home/manuel/practica1/lib/libGLUILib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/manuel/practica1"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/manuel/practica1/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 GLUILib"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="GLUILib/fast">
+				<Option output="/home/manuel/practica1/lib/libGLUILib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/manuel/practica1"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/manuel/practica1/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 GLUILib/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="modelosBelkanLib">
+				<Option output="/home/manuel/practica1/lib/libmodelosBelkanLib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/manuel/practica1"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/manuel/practica1/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 modelosBelkanLib"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="modelosBelkanLib/fast">
+				<Option output="/home/manuel/practica1/lib/libmodelosBelkanLib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/manuel/practica1"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/manuel/practica1/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 modelosBelkanLib/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="practica1">
+				<Option output="/home/manuel/practica1/practica1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/manuel/practica1"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/manuel/practica1/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 practica1"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="practica1/fast">
+				<Option output="/home/manuel/practica1/practica1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/manuel/practica1"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/manuel/practica1/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 practica1/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="comportamientosLib">
+				<Option output="/home/manuel/practica1/lib/libcomportamientosLib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/manuel/practica1"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/manuel/practica1/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 comportamientosLib"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="comportamientosLib/fast">
+				<Option output="/home/manuel/practica1/lib/libcomportamientosLib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/manuel/practica1"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/manuel/practica1/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 comportamientosLib/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/manuel/practica1/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/manuel/practica1/Comportamientos_Jugador/aldeano.cpp">
+			<Option target="comportamientosLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/Comportamientos_Jugador/aldeano.hpp">
+			<Option target="comportamientosLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/Comportamientos_Jugador/jugador.cpp">
+			<Option target="comportamientosLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/Comportamientos_Jugador/jugador.hpp">
+			<Option target="comportamientosLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/Comportamientos_Jugador/perro.cpp">
+			<Option target="comportamientosLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/Comportamientos_Jugador/perro.hpp">
+			<Option target="comportamientosLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/bin_src/juego.cc">
+			<Option target="practica1"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/bin_src/juegoSG.cc">
+			<Option target="practica1SG"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/comportamientos/comportamiento.cpp">
+			<Option target="comportamientosLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/algebra3.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/arcball.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_add_controls.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_bitmap_img_data.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_bitmaps.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_button.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_checkbox.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_column.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_commandline.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_control.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_edittext.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_filebrowser.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_list.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_listbox.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_mouse_iaction.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_node.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_panel.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_radio.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_rollout.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_rotation.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_scrollbar.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_separator.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_spinner.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_statictext.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_string.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_textbox.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_translation.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_tree.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_treepanel.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/glui_window.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/quaternion.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/glui/viewmodel.cpp">
+			<Option target="GLUILib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/modelos/aldeano/aldeano.cpp">
+			<Option target="modelosBelkanLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/modelos/aldeano/brazo.cpp">
+			<Option target="modelosBelkanLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/modelos/aldeano/cabeza.cpp">
+			<Option target="modelosBelkanLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/modelos/aldeano/cintura.cpp">
+			<Option target="modelosBelkanLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/modelos/aldeano/pierna.cpp">
+			<Option target="modelosBelkanLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/modelos/aldeano/torso.cpp">
+			<Option target="modelosBelkanLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/modelos/arbol/arbol.cpp">
+			<Option target="modelosBelkanLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/modelos/item/item.cpp">
+			<Option target="modelosBelkanLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/modelos/jugador/jugador3d.cpp">
+			<Option target="modelosBelkanLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/modelos/jugador/quesito.cpp">
+			<Option target="modelosBelkanLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/modelos/perro/cabeza.cpp">
+			<Option target="modelosBelkanLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/modelos/perro/lomo.cpp">
+			<Option target="modelosBelkanLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/modelos/perro/perro.cpp">
+			<Option target="modelosBelkanLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/modelos/retrato.cpp">
+			<Option target="modelosBelkanLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/motorlib/entidad.cpp">
+			<Option target="motorLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/motorlib/mapa.cpp">
+			<Option target="motorLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/motorlib/monitor.cpp">
+			<Option target="motorLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/motorlib/motor_grafico.cpp">
+			<Option target="motorLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/motorlib/motor_juego.cpp">
+			<Option target="motorLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/motorlib/util.cpp">
+			<Option target="motorLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/obj3dlib/cono3d.cc">
+			<Option target="obj3DLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/obj3dlib/cono3dwire.cc">
+			<Option target="obj3DLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/obj3dlib/cubo3d.cc">
+			<Option target="obj3DLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/obj3dlib/dodecaedro3d.cc">
+			<Option target="obj3DLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/obj3dlib/esfera3d.cc">
+			<Option target="obj3DLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/obj3dlib/file_ply_stl.cc">
+			<Option target="obj3DLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/obj3dlib/icosaedro3d.cc">
+			<Option target="obj3DLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/obj3dlib/jpeg_reader/jpg_imagen.cpp">
+			<Option target="obj3DLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/obj3dlib/jpeg_reader/jpg_memsrc.cpp">
+			<Option target="obj3DLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/obj3dlib/jpeg_reader/jpg_readwrite.cpp">
+			<Option target="obj3DLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/obj3dlib/luz.cpp">
+			<Option target="obj3DLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/obj3dlib/objeto3d.cc">
+			<Option target="obj3DLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/obj3dlib/objrevolucion3d.cc">
+			<Option target="obj3DLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/obj3dlib/octaedro3d.cc">
+			<Option target="obj3DLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/obj3dlib/tetraedro3d.cc">
+			<Option target="obj3DLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/src/obj3dlib/toro3d.cc">
+			<Option target="obj3DLib"/>
+		</Unit>
+		<Unit filename="/home/manuel/practica1/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

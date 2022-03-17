@@ -38,7 +38,18 @@ Action ComportamientoJugador::think(Sensores sensores){
 	}
 
 	//Decidir la nueva accion
-	if((sensores.terreno[2] == 'T' or sensores.terreno[2] == 'S' or sensores.terreno[2] == 'G') and sensores.superficie[2] == '_'){
+    if((sensores.terreno[3] == 'G' and sensores.superficie[3] == '_') or dir_cas3 > 0 and sensores.superficie[3] == '_'){
+        if(dir_cas3 == 0){
+            accion = actTURN_R;
+            dir_cas3++;
+        }else if(dir_cas3 == 1){
+            accion = actFORWARD;
+            dir_cas3++;
+        }else if(dir_cas3 == 2){
+            accion = actTURN_L;
+            dir_cas3 = 0;
+        }
+    }else if((sensores.terreno[2] == 'T' or sensores.terreno[2] == 'S' or sensores.terreno[2] == 'G') and sensores.superficie[2] == '_'){
 		accion = actFORWARD;
 	}else if(!girar_derecha){
 		accion = actTURN_L;

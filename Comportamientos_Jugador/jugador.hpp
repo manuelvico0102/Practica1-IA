@@ -15,6 +15,7 @@ class ComportamientoJugador : public Comportamiento{
       ultimaAccion = actIDLE;
       girar_derecha = false;
       bien_situado = false;
+      dir_cas3 = 0;
     }
 
     ComportamientoJugador(const ComportamientoJugador & comport) : Comportamiento(comport){}
@@ -29,6 +30,7 @@ class ComportamientoJugador : public Comportamiento{
   	int fil, col, brujula;
   	Action ultimaAccion;
   	bool girar_derecha, bien_situado;
+    int dir_cas3;
 
 };
 
