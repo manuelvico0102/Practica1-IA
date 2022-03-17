@@ -5,6 +5,18 @@ using namespace std;
 
 
 Action ComportamientoJugador::think(Sensores sensores){
+    if(inicio_partida){
+        int tam = 30;       //Hay que cambiar el 30 por el valor de cada mapa
+        for(int i = 0; i < tam; i++){
+            for(int j = 0; j < tam; j++){
+                if(i <= 2 || i >= tam-3 || j <= 2 || j >= tam-3){
+                    mapaResultado[i][j] = 'P';
+                }
+            }
+        }
+
+        inicio_partida = false;
+    }
 
 	Action accion = actIDLE;
 	//actualización del conocimiento
@@ -38,7 +50,7 @@ Action ComportamientoJugador::think(Sensores sensores){
 	}
 
 	//Decidir la nueva accion
-    if((sensores.terreno[3] == 'G' and sensores.superficie[3] == '_') or dir_cas3 > 0 and sensores.superficie[3] == '_'){
+    /*if((sensores.terreno[3] == 'G' and sensores.superficie[3] == '_') or dir_cas3 > 0 and sensores.superficie[3] == '_'){
         if(dir_cas3 == 0){
             accion = actTURN_R;
             dir_cas3++;
@@ -49,7 +61,7 @@ Action ComportamientoJugador::think(Sensores sensores){
             accion = actTURN_L;
             dir_cas3 = 0;
         }
-    }else if((sensores.terreno[2] == 'T' or sensores.terreno[2] == 'S' or sensores.terreno[2] == 'G') and sensores.superficie[2] == '_'){
+    }else */if((sensores.terreno[2] == 'T' or sensores.terreno[2] == 'S' or sensores.terreno[2] == 'G') and sensores.superficie[2] == '_'){
 		accion = actFORWARD;
 	}else if(!girar_derecha){
 		accion = actTURN_L;
