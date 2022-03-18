@@ -28,17 +28,41 @@ Action ComportamientoJugador::think(Sensores sensores){
 				case 2: fil++; break;		//Sur
 				case 3: col--; break;		//Oeste
 			}
+
+            if(sensores.bateria == 5000)
+                cargado = true;
+            else
+                cargado = false;
+
 			break;
 		case actTURN_L:
 			brujula = (brujula+3)%4;
-			//girar_derecha = (rand()%2==0);
-            girar_derecha = true;
+			girar_derecha = (rand()%2==0);
+            //girar_derecha = true;
+            if(sensores.bateria == 5000)
+                cargado = true;
+            else
+                cargado = false;
 			break;
 		case actTURN_R:
 			brujula = (brujula+1)%4;
 			girar_derecha = (rand()%2==0);
             //girar_derecha = false;
+
+            if(sensores.bateria == 5000)
+                cargado = true;
+            else
+                cargado = false;
+
 			break;
+        case actIDLE:
+            if(sensores.bateria == 5000)
+                cargado = true;
+            else
+                cargado = false;
+
+            break;
+
 	}
 
 	if(sensores.terreno[0] == 'G' and !bien_situado){
@@ -61,7 +85,13 @@ Action ComportamientoJugador::think(Sensores sensores){
     }
 
 	//Decidir la nueva accion
-    if(((sensores.terreno[3] == 'G' and sensores.superficie[3] == '_')and sensores.superficie[3] == '_' ) or dir_cas3 > 0){
+    if((sensores.terreno[2] == 'X' || sensores.terreno[6]=='X' || sensores.terreno[12] =='X' || sensores.terreno[0] == 'X') && !cargado){
+        if(sensores.terreno[0] != 'X')
+            accion = actFORWARD;
+        else
+            accion = actIDLE;
+    }else if(((sensores.terreno[3] == 'G' or sensores.terreno[3] == 'X' or sensores.terreno[3] == 'K' or
+                sensores.terreno[3] == 'D')and sensores.superficie[3] == '_' ) or dir_cas3 > 0){
         if(dir_cas3 == 0){
             accion = actTURN_R;
             dir_cas3++;
@@ -72,18 +102,43 @@ Action ComportamientoJugador::think(Sensores sensores){
             accion = actTURN_L;
             dir_cas3 = 0;
         }
+    }else if(((sensores.terreno[1] == 'G' or sensores.terreno[1] == 'X' or sensores.terreno[1] == 'K' or
+               sensores.terreno[1] == 'D')and sensores.superficie[1] == '_' ) or dir_cas1 > 0) {
+        if (dir_cas1 == 0) {
+            accion = actTURN_L;
+            dir_cas1++;
+        } else if (dir_cas1 == 1) {
+            accion = actFORWARD;
+            dir_cas1++;
+        } else if (dir_cas1 == 2) {
+            accion = actTURN_R;
+            dir_cas1 = 0;
+        }
+    }else if(avanzadas >= 5 || sensores.terreno[2] == 'P' || sensores.terreno[2] == 'M' ||
+            (sensores.terreno[2] == 'A' && !bikini) || (sensores.terreno[2] == 'B' && !zapatillas) ){
+        avanzadas = 0;
+        if(girar_derecha)
+            accion = actTURN_R;
+        else
+            accion = actTURN_L;
+
     }else if((sensores.terreno[2] == 'T' or sensores.terreno[2] == 'S' or sensores.terreno[2] == 'G' or
-            sensores.terreno[2] == 'D' or sensores.terreno[2] == 'K') and sensores.superficie[2] == '_'){
+            sensores.terreno[2] == 'D' or sensores.terreno[2] == 'K' or sensores.terreno[2] == 'X' or
+            (sensores.terreno[2] == 'B' and zapatillas) or (sensores.terreno[2] == 'A' and bikini) and
+            sensores.superficie[2] == '_') and sensores.superficie[2] == '_'){
 		accion = actFORWARD;
-	}else if((sensores.terreno[2] == 'B' and zapatillas) and sensores.superficie[2] == '_'){
+        avanzadas++;
+	}/*else if((sensores.terreno[2] == 'B' and zapatillas) and sensores.superficie[2] == '_'){
         accion = actFORWARD;
+        avanzadas++;
     }else if((sensores.terreno[2] == 'A' and bikini) and sensores.superficie[2] == '_') {
         accion = actFORWARD;
-    }else if(!girar_derecha){
+        avanzadas++;
+    }/*else if(!girar_derecha){
         accion = actTURN_L;
     }else{
 		accion = actTURN_R;
-	}
+	}*/
 
 	cout << "Posicion: fila " << sensores.posF << " columna " << sensores.posC << " ";
 	switch(sensores.sentido){
@@ -109,9 +164,6 @@ Action ComportamientoJugador::think(Sensores sensores){
 
 
 	// Determinar el efecto de la ultima accion enviada
-    if(sensores.terreno[1] == '?' and sensores.superficie[1] == '_'){
-        girar_derecha = false;
-    }
 	ultimaAccion = accion;		//Recordamos última acción
 	return accion;
 }
