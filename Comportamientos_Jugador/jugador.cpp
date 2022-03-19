@@ -38,7 +38,7 @@ Action ComportamientoJugador::think(Sensores sensores){
 		case actTURN_L:
 			brujula = (brujula+3)%4;
 			girar_derecha = (rand()%2==0);
-            //girar_derecha = true;
+
             if(sensores.bateria == 5000)
                 cargado = true;
             else
@@ -47,7 +47,6 @@ Action ComportamientoJugador::think(Sensores sensores){
 		case actTURN_R:
 			brujula = (brujula+1)%4;
 			girar_derecha = (rand()%2==0);
-            //girar_derecha = false;
 
             if(sensores.bateria == 5000)
                 cargado = true;
@@ -83,6 +82,13 @@ Action ComportamientoJugador::think(Sensores sensores){
             mapaResultado[fil-2][col] = sensores.terreno[6];
             mapaResultado[fil-2][col+1] = sensores.terreno[7];
             mapaResultado[fil-2][col+2] = sensores.terreno[8];
+            mapaResultado[fil-3][col-3] = sensores.terreno[9];
+            mapaResultado[fil-3][col-2] = sensores.terreno[10];
+            mapaResultado[fil-3][col-1] = sensores.terreno[11];
+            mapaResultado[fil-3][col] = sensores.terreno[12];
+            mapaResultado[fil-3][col+1] = sensores.terreno[13];
+            mapaResultado[fil-3][col+2] = sensores.terreno[14];
+            mapaResultado[fil-3][col+3] = sensores.terreno[15];
         }else if(sensores.sentido == 1){                                    //Mirando al este
             mapaResultado[fil-1][col+1] = sensores.terreno[1];
             mapaResultado[fil][col+1] = sensores.terreno[2];
@@ -92,6 +98,13 @@ Action ComportamientoJugador::think(Sensores sensores){
             mapaResultado[fil][col+2] = sensores.terreno[6];
             mapaResultado[fil+1][col+2] = sensores.terreno[7];
             mapaResultado[fil+2][col+2] = sensores.terreno[8];
+            mapaResultado[fil-3][col+3] = sensores.terreno[9];
+            mapaResultado[fil-2][col+3] = sensores.terreno[10];
+            mapaResultado[fil-1][col+3] = sensores.terreno[11];
+            mapaResultado[fil][col+3] = sensores.terreno[12];
+            mapaResultado[fil+1][col+3] = sensores.terreno[13];
+            mapaResultado[fil+2][col+3] = sensores.terreno[14];
+            mapaResultado[fil+3][col+3] = sensores.terreno[15];
         }else if(sensores.sentido == 2) {                                   //Mirando al sur
             mapaResultado[fil+1][col+1] = sensores.terreno[1];
             mapaResultado[fil+1][col] = sensores.terreno[2];
@@ -101,6 +114,13 @@ Action ComportamientoJugador::think(Sensores sensores){
             mapaResultado[fil+2][col] = sensores.terreno[6];
             mapaResultado[fil+2][col-1] = sensores.terreno[7];
             mapaResultado[fil+2][col-2] = sensores.terreno[8];
+            mapaResultado[fil+3][col+3] = sensores.terreno[9];
+            mapaResultado[fil+3][col+2] = sensores.terreno[10];
+            mapaResultado[fil+3][col+1] = sensores.terreno[11];
+            mapaResultado[fil+3][col] = sensores.terreno[12];
+            mapaResultado[fil+3][col-1] = sensores.terreno[13];
+            mapaResultado[fil+3][col-2] = sensores.terreno[14];
+            mapaResultado[fil+3][col-3] = sensores.terreno[15];
         }else if(sensores.sentido == 3) {                                   //Mirando al oeste
             mapaResultado[fil+1][col-1] = sensores.terreno[1];
             mapaResultado[fil][col-1] = sensores.terreno[2];
@@ -110,6 +130,13 @@ Action ComportamientoJugador::think(Sensores sensores){
             mapaResultado[fil][col-2] = sensores.terreno[6];
             mapaResultado[fil-1][col-2] = sensores.terreno[7];
             mapaResultado[fil-2][col-2] = sensores.terreno[8];
+            mapaResultado[fil+3][col-3] = sensores.terreno[9];
+            mapaResultado[fil+2][col-3] = sensores.terreno[10];
+            mapaResultado[fil+1][col-3] = sensores.terreno[11];
+            mapaResultado[fil][col-3] = sensores.terreno[12];
+            mapaResultado[fil-1][col-3] = sensores.terreno[13];
+            mapaResultado[fil-2][col-3] = sensores.terreno[14];
+            mapaResultado[fil-3][col-3] = sensores.terreno[15];
         }
 	}
 
@@ -122,8 +149,25 @@ Action ComportamientoJugador::think(Sensores sensores){
     }
 
 	//Decidir la nueva accion
-
-    if((sensores.terreno[2] == 'X' || sensores.terreno[6]=='X' || sensores.terreno[12] =='X' || sensores.terreno[0] == 'X') && !cargado){
+    if((sensores.terreno[3] == 'M' && sensores.terreno[7] != 'M' && sensores.terreno[7] != 'P' &&
+        sensores.superficie[7] == '_' && sensores.terreno[2] != 'M') || saliendo > 0){
+        if(saliendo <= 1) {             //Se hará dos veces
+            accion = actFORWARD;
+            saliendo++;
+        }else if(saliendo == 2){
+            accion = actTURN_R;
+            saliendo = 0;
+        }
+    }else if((sensores.terreno[1] == 'M' && sensores.terreno[5] != 'M' && sensores.terreno[5] != 'P'
+               && sensores.superficie[5] == '_' && sensores.terreno[2] != 'M') || saliendo > 0){
+        if(saliendo <= 1) {             //Se hará dos veces
+            accion = actFORWARD;
+            saliendo++;
+        }else if(saliendo == 2){
+            accion = actTURN_L;
+            saliendo = 0;
+        }
+    }else if((sensores.terreno[2] == 'X' || sensores.terreno[6]=='X' || sensores.terreno[12] =='X' || sensores.terreno[0] == 'X') && !cargado){
         if(sensores.terreno[0] != 'X')
             accion = actFORWARD;
         else
@@ -152,7 +196,7 @@ Action ComportamientoJugador::think(Sensores sensores){
             accion = actTURN_R;
             dir_cas1 = 0;
         }
-    }else if(avanzadas >= 5 || sensores.terreno[2] == 'P' || sensores.terreno[2] == 'M' ||
+    }else if(avanzadas >= 10 || sensores.terreno[2] == 'P' || sensores.terreno[2] == 'M' ||
             (sensores.terreno[2] == 'A' && !bikini) || (sensores.terreno[2] == 'B' && !zapatillas) ){
         avanzadas = 0;
         if(girar_derecha)
