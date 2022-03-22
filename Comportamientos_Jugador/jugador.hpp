@@ -16,10 +16,9 @@ class ComportamientoJugador : public Comportamiento{
       girar_derecha = false;
       avanzadas = 0;
       bien_situado = false;
-      dir_cas3 = dir_cas1 = saliendo = 0;
+      dir_cas3 = dir_cas1 = saliendo = saliendo1 = 0;
       inicio_partida = true;
       bikini = zapatillas = false;
-      no_descubierta = false;
       cargado = true;
     }
 
@@ -36,11 +35,10 @@ class ComportamientoJugador : public Comportamiento{
   	Action ultimaAccion;
   	bool girar_derecha, bien_situado;
     int avanzadas;
-    int dir_cas3, dir_cas1, saliendo;
+    int dir_cas3, dir_cas1, saliendo, saliendo1;
     int cargado;
     bool inicio_partida;
     bool bikini, zapatillas;
-    bool no_descubierta;
 };
 
 #endif

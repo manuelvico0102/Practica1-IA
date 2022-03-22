@@ -29,42 +29,39 @@ Action ComportamientoJugador::think(Sensores sensores){
 				case 3: col--; break;		//Oeste
 			}
 
+            cargado = false;
             if(sensores.bateria >= 4500)
                 cargado = true;
-            else
-                cargado = false;
 
 			break;
 		case actTURN_L:
 			brujula = (brujula+3)%4;
 			girar_derecha = (rand()%2==0);
 
+            cargado = false;
             if(sensores.bateria >= 4500)
                 cargado = true;
-            else
-                cargado = false;
+
 			break;
 		case actTURN_R:
 			brujula = (brujula+1)%4;
 			girar_derecha = (rand()%2==0);
 
+            cargado = false;
             if(sensores.bateria >= 4500)
                 cargado = true;
-            else
-                cargado = false;
 
 			break;
         case actIDLE:
-            if(sensores.bateria >= 4500)
+            cargado = false;
+            if(sensores.bateria >= 4500 || sensores.vida >= 1000)
                 cargado = true;
-            else
-                cargado = false;
 
             break;
 
 	}
 
-    if(sensores.reset == true) {
+    if(sensores.reset) {
         bien_situado = false;
         bikini = false;
         zapatillas = false;
@@ -77,7 +74,7 @@ Action ComportamientoJugador::think(Sensores sensores){
 		bien_situado = true;
 	}
 
-	if(bien_situado){
+	if(bien_situado){           //Pasarlo a for
 		mapaResultado[fil][col] = sensores.terreno[0];
         if(sensores.sentido == 0) {                                         //Mirando al norte
             mapaResultado[fil-1][col-1] = sensores.terreno[1];
@@ -155,7 +152,10 @@ Action ComportamientoJugador::think(Sensores sensores){
     }
 
 	//Decidir la nueva accion
-    if((sensores.terreno[3] == 'M' && sensores.terreno[7] != 'M' && sensores.terreno[7] != 'P' &&
+    if(((sensores.terreno[0] == 'B' && !zapatillas) || (sensores.terreno[0] == 'A' && !bikini) &&                       //Para salir de zonas rodeadas de agua
+        sensores.terreno[12] != 'B' && sensores.terreno[12] != 'A') && sensores.superficie[2] == '_') {
+        accion = actFORWARD;
+    }else if((sensores.terreno[3] == 'M' && sensores.terreno[7] != 'M' && sensores.terreno[7] != 'P' &&
         sensores.superficie[7] == '_' && sensores.terreno[2] != 'M') || saliendo > 0){
         if(saliendo <= 1) {             //Se hará dos veces
             accion = actFORWARD;
@@ -165,13 +165,13 @@ Action ComportamientoJugador::think(Sensores sensores){
             saliendo = 0;
         }
     }else if((sensores.terreno[1] == 'M' && sensores.terreno[5] != 'M' && sensores.terreno[5] != 'P'
-               && sensores.superficie[5] == '_' && sensores.terreno[2] != 'M') || saliendo > 0){
-        if(saliendo <= 1) {             //Se hará dos veces
+               && sensores.superficie[5] == '_' && sensores.terreno[2] != 'M') || saliendo1 > 0){
+        if(saliendo1 <= 1) {             //Se hará dos veces
             accion = actFORWARD;
-            saliendo++;
-        }else if(saliendo == 2){
+            saliendo1++;
+        }else if(saliendo1 == 2){
             accion = actTURN_L;
-            saliendo = 0;
+            saliendo1 = 0;
         }
     }else if((sensores.terreno[2] == 'X' || sensores.terreno[6]=='X' || sensores.terreno[12] =='X' || sensores.terreno[0] == 'X') && !cargado){
         if(sensores.terreno[0] != 'X')
