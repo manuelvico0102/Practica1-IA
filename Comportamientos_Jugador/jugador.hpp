@@ -35,7 +35,7 @@ class ComportamientoJugador : public Comportamiento{
   	Action ultimaAccion;
   	bool girar_derecha, bien_situado;
     int avanzadas;
-    int dir_cas3, dir_cas1, saliendo, saliendo1;
+    int dir_cas3, dir_cas1, dir_cas, saliendo, saliendo1;
     int cargado;
     bool inicio_partida;
     bool bikini, zapatillas;

@@ -30,7 +30,7 @@ Action ComportamientoJugador::think(Sensores sensores){
 			}
 
             cargado = false;
-            if(sensores.bateria >= 4500)
+            if((sensores.bateria >= 4500 && sensores.vida >= 900) || (sensores.vida <= 900 && sensores.bateria >= 1500 ))
                 cargado = true;
 
 			break;
@@ -39,7 +39,7 @@ Action ComportamientoJugador::think(Sensores sensores){
 			girar_derecha = (rand()%2==0);
 
             cargado = false;
-            if(sensores.bateria >= 4500)
+            if((sensores.bateria >= 4500 && sensores.vida >= 900) || (sensores.vida <= 900 && sensores.bateria >= 1500 ))
                 cargado = true;
 
 			break;
@@ -48,17 +48,16 @@ Action ComportamientoJugador::think(Sensores sensores){
 			girar_derecha = (rand()%2==0);
 
             cargado = false;
-            if(sensores.bateria >= 4500)
+            if((sensores.bateria >= 4500 && sensores.vida >= 900) || (sensores.vida <= 900 && sensores.bateria >= 1500 ))
                 cargado = true;
 
 			break;
         case actIDLE:
             cargado = false;
-            if(sensores.bateria >= 4500 || sensores.vida >= 1000)
+            if((sensores.bateria >= 4500 && sensores.vida >= 900) || (sensores.vida <= 900 && sensores.bateria >= 1500 ))
                 cargado = true;
 
             break;
-
 	}
 
     if(sensores.reset) {
@@ -152,7 +151,7 @@ Action ComportamientoJugador::think(Sensores sensores){
     }
 
 	//Decidir la nueva accion
-    if(((sensores.terreno[0] == 'B' && !zapatillas) || (sensores.terreno[0] == 'A' && !bikini) &&                       //Para salir de zonas rodeadas de agua
+    if(((sensores.terreno[0] == 'B' && !zapatillas) || (sensores.terreno[0] == 'A' && !bikini) &&                       //Para salir de zonas rodeadas de agua/bosque
         sensores.terreno[12] != 'B' && sensores.terreno[12] != 'A') && sensores.superficie[2] == '_') {
         accion = actFORWARD;
     }else if((sensores.terreno[3] == 'M' && sensores.terreno[7] != 'M' && sensores.terreno[7] != 'P' &&
@@ -173,36 +172,59 @@ Action ComportamientoJugador::think(Sensores sensores){
             accion = actTURN_L;
             saliendo1 = 0;
         }
-    }else if((sensores.terreno[2] == 'X' || sensores.terreno[6]=='X' || sensores.terreno[12] =='X' || sensores.terreno[0] == 'X') && !cargado){
+    }else if((sensores.terreno[2] == 'X' || sensores.terreno[6]=='X' || sensores.terreno[12] =='X' || sensores.terreno[0] == 'X') && !cargado && sensores.superficie[2] == '_'){
         if(sensores.terreno[0] != 'X')
             accion = actFORWARD;
         else
             accion = actIDLE;
-    }else if(((sensores.terreno[3] == 'G' or sensores.terreno[3] == 'X' or sensores.terreno[3] == 'K' or
-                sensores.terreno[3] == 'D')and sensores.superficie[3] == '_' ) or dir_cas3 > 0){
+    }else if(((sensores.terreno[2] == 'G' || sensores.terreno[6] == 'G' || sensores.terreno[12] == 'G' && !bien_situado) ||
+            (sensores.terreno[2] == 'K' || sensores.terreno[6] == 'K' || sensores.terreno[12] == 'K' && !bikini) ||
+            (sensores.terreno[2] == 'D' || sensores.terreno[6] == 'D' || sensores.terreno[12] == 'D' && !zapatillas)) && sensores.superficie[2] == '_') {
+        if(sensores.terreno[2] != 'M')
+            accion = actFORWARD;
+        else
+            accion = actTURN_L;
+    }else if((((sensores.terreno[3] == 'G' && !bien_situado) || sensores.terreno[3] == 'X' || (sensores.terreno[3] == 'K' && !bikini) ||
+               (sensores.terreno[3] == 'D' && !zapatillas))&& sensores.superficie[3] == '_' ) ||
+             (((sensores.terreno[7] == 'G' && !bien_situado) || sensores.terreno[7] == 'X' || (sensores.terreno[7] == 'K' && !bikini) ||
+               (sensores.terreno[7] == 'D' && !zapatillas))&& sensores.superficie[7] == '_' )||
+             (((sensores.terreno[13] == 'G' && !bien_situado) || sensores.terreno[13] == 'X' || (sensores.terreno[13] == 'K' && !bikini) ||
+               (sensores.terreno[13] == 'D' && !zapatillas))&& sensores.superficie[13] == '_' )|| dir_cas3 > 0){
         if(dir_cas3 == 0){
             accion = actTURN_R;
             dir_cas3++;
         }else if(dir_cas3 == 1){
-            accion = actFORWARD;
-            dir_cas3++;
+            if(sensores.terreno[2] != 'M') {
+                accion = actFORWARD;
+                dir_cas3++;
+            }else{
+                dir_cas =0;
+            }
         }else if(dir_cas3 == 2){
             accion = actTURN_L;
             dir_cas3 = 0;
         }
-    }else if(((sensores.terreno[1] == 'G' or sensores.terreno[1] == 'X' or sensores.terreno[1] == 'K' or
-               sensores.terreno[1] == 'D')and sensores.superficie[1] == '_' ) or dir_cas1 > 0) {
+    }else if((((sensores.terreno[1] == 'G' && !bien_situado) || sensores.terreno[1] == 'X' || (sensores.terreno[1] == 'K' && !bikini) ||
+            (sensores.terreno[1] == 'D' && !zapatillas))&& sensores.superficie[1] == '_' ) ||
+            (((sensores.terreno[5] == 'G' && !bien_situado) || sensores.terreno[5] == 'X' || (sensores.terreno[5] == 'K' && !bikini) ||
+            (sensores.terreno[5] == 'D' && !zapatillas))&& sensores.superficie[5] == '_' )||
+            (((sensores.terreno[11] == 'G' && !bien_situado) || sensores.terreno[11] == 'X' || (sensores.terreno[11] == 'K' && !bikini) ||
+            (sensores.terreno[11] == 'D' && !zapatillas))&& sensores.superficie[11] == '_' )|| dir_cas1 > 0) {
         if (dir_cas1 == 0) {
             accion = actTURN_L;
             dir_cas1++;
         } else if (dir_cas1 == 1) {
-            accion = actFORWARD;
-            dir_cas1++;
+            if(sensores.terreno[2] != 'M'){
+                accion = actFORWARD;
+                dir_cas1++;
+            }else{
+                dir_cas1 = 0;
+            }
         } else if (dir_cas1 == 2) {
             accion = actTURN_R;
             dir_cas1 = 0;
         }
-    }else if(avanzadas >= 10 || sensores.terreno[2] == 'P' || sensores.terreno[2] == 'M' ||
+    }else if(avanzadas >= 20 || sensores.terreno[2] == 'P' || sensores.terreno[2] == 'M' ||
             (sensores.terreno[2] == 'A' && !bikini /*&& sensores.bateria <= 4980*/) ||
             (sensores.terreno[2] == 'B' && !zapatillas /*&& sensores.bateria <= 4800*/)){
         avanzadas = 0;
