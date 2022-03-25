@@ -30,7 +30,7 @@ Action ComportamientoJugador::think(Sensores sensores){
 			}
 
             cargado = false;
-            if((sensores.bateria >= 4500 && sensores.vida >= 900) || (sensores.vida <= 900 && sensores.bateria >= 1500 ))
+            if((sensores.bateria >= cant_bateria && sensores.vida >= 900) || (sensores.vida <= 900 && sensores.bateria >= 1500 ))
                 cargado = true;
 
 			break;
@@ -39,7 +39,7 @@ Action ComportamientoJugador::think(Sensores sensores){
 			girar_derecha = (rand()%2==0);
 
             cargado = false;
-            if((sensores.bateria >= 4500 && sensores.vida >= 900) || (sensores.vida <= 900 && sensores.bateria >= 1500 ))
+            if((sensores.bateria >= cant_bateria && sensores.vida >= 900) || (sensores.vida <= 900 && sensores.bateria >= 1500 ))
                 cargado = true;
 
 			break;
@@ -48,13 +48,13 @@ Action ComportamientoJugador::think(Sensores sensores){
 			girar_derecha = (rand()%2==0);
 
             cargado = false;
-            if((sensores.bateria >= 4500 && sensores.vida >= 900) || (sensores.vida <= 900 && sensores.bateria >= 1500 ))
+            if((sensores.bateria >= cant_bateria && sensores.vida >= 900) || (sensores.vida <= 900 && sensores.bateria >= 1500 ))
                 cargado = true;
 
 			break;
         case actIDLE:
             cargado = false;
-            if((sensores.bateria >= 4500 && sensores.vida >= 900) || (sensores.vida <= 900 && sensores.bateria >= 1500 ))
+            if((sensores.bateria >= cant_bateria && sensores.vida >= 900) || (sensores.vida <= 900 && sensores.bateria >= 1500 ))
                 cargado = true;
 
             break;
@@ -151,14 +151,19 @@ Action ComportamientoJugador::think(Sensores sensores){
     }
 
 	//Decidir la nueva accion
+    //Para ir a zonas no esploradas a partir de x porcentaje --> for(int i = col; i < size; i++)
     if(((sensores.terreno[0] == 'B' && !zapatillas) || (sensores.terreno[0] == 'A' && !bikini) &&                       //Para salir de zonas rodeadas de agua/bosque
         sensores.terreno[12] != 'B' && sensores.terreno[12] != 'A') && sensores.superficie[2] == '_') {
         accion = actFORWARD;
     }else if((sensores.terreno[3] == 'M' && sensores.terreno[7] != 'M' && sensores.terreno[7] != 'P' &&
         sensores.superficie[7] == '_' && sensores.terreno[2] != 'M') || saliendo > 0){
         if(saliendo <= 1) {             //Se hará dos veces
-            accion = actFORWARD;
-            saliendo++;
+            if(sensores.terreno[2] != 'M') {
+                accion = actFORWARD;
+                saliendo++;
+            }else{
+                saliendo = 0;
+            }
         }else if(saliendo == 2){
             accion = actTURN_R;
             saliendo = 0;
@@ -166,8 +171,12 @@ Action ComportamientoJugador::think(Sensores sensores){
     }else if((sensores.terreno[1] == 'M' && sensores.terreno[5] != 'M' && sensores.terreno[5] != 'P'
                && sensores.superficie[5] == '_' && sensores.terreno[2] != 'M') || saliendo1 > 0){
         if(saliendo1 <= 1) {             //Se hará dos veces
-            accion = actFORWARD;
-            saliendo1++;
+            if(sensores.terreno[2] != 'M') {
+                accion = actFORWARD;
+                saliendo1++;
+            }else{
+                saliendo1 = 0;
+            }
         }else if(saliendo1 == 2){
             accion = actTURN_L;
             saliendo1 = 0;
@@ -198,13 +207,13 @@ Action ComportamientoJugador::think(Sensores sensores){
                 accion = actFORWARD;
                 dir_cas3++;
             }else{
-                dir_cas =0;
+                dir_cas8 =0;
             }
         }else if(dir_cas3 == 2){
             accion = actTURN_L;
             dir_cas3 = 0;
         }
-    }else if((((sensores.terreno[1] == 'G' && !bien_situado) || sensores.terreno[1] == 'X' || (sensores.terreno[1] == 'K' && !bikini) ||
+    }else  if((((sensores.terreno[1] == 'G' && !bien_situado) || sensores.terreno[1] == 'X' || (sensores.terreno[1] == 'K' && !bikini) ||
             (sensores.terreno[1] == 'D' && !zapatillas))&& sensores.superficie[1] == '_' ) ||
             (((sensores.terreno[5] == 'G' && !bien_situado) || sensores.terreno[5] == 'X' || (sensores.terreno[5] == 'K' && !bikini) ||
             (sensores.terreno[5] == 'D' && !zapatillas))&& sensores.superficie[5] == '_' )||
@@ -224,7 +233,77 @@ Action ComportamientoJugador::think(Sensores sensores){
             accion = actTURN_R;
             dir_cas1 = 0;
         }
-    }else if(avanzadas >= 20 || sensores.terreno[2] == 'P' || sensores.terreno[2] == 'M' ||
+    }else if((((sensores.terreno[8] == 'G' && !bien_situado) || sensores.terreno[8] == 'X' || (sensores.terreno[8] == 'K' && !bikini) ||
+             (sensores.terreno[8] == 'D' && !zapatillas))&& sensores.superficie[8] == '_' ) ||
+             (((sensores.terreno[14] == 'G' && !bien_situado) || sensores.terreno[14] == 'X' || (sensores.terreno[14] == 'K' && !bikini) ||
+             (sensores.terreno[14] == 'D' && !zapatillas))&& sensores.superficie[14] == '_' )|| dir_cas8 > 0) {
+        if(dir_cas8 == 0){
+            accion = actTURN_R;
+            dir_cas8++;
+        }else if (dir_cas8 <= 2){
+            if(sensores.terreno[2] != 'M') {
+                accion = actFORWARD;
+                dir_cas8++;
+            }else{
+                dir_cas8 = 0;
+            }
+        }else{
+            accion = actTURN_L;
+            dir_cas8 = 0;
+        }
+    }else if((((sensores.terreno[4] == 'G' && !bien_situado) || sensores.terreno[4] == 'X' || (sensores.terreno[4] == 'K' && !bikini) ||
+               (sensores.terreno[4] == 'D' && !zapatillas))&& sensores.superficie[4] == '_' ) ||
+             (((sensores.terreno[10] == 'G' && !bien_situado) || sensores.terreno[10] == 'X' || (sensores.terreno[10] == 'K' && !bikini) ||
+               (sensores.terreno[10] == 'D' && !zapatillas))&& sensores.superficie[10] == '_' )|| dir_cas4 > 0) {
+        if(dir_cas4 == 0){
+            accion = actTURN_L;
+            dir_cas4++;
+        }else if (dir_cas4 <= 2){
+            if(sensores.terreno[2] != 'M') {
+                accion = actFORWARD;
+                dir_cas4++;
+            }else{
+                dir_cas4 = 0;
+            }
+        }else{
+            accion = actTURN_R;
+            dir_cas4 = 0;
+        }
+    }else if((((sensores.terreno[15] == 'G' && !bien_situado) || sensores.terreno[15] == 'X' || (sensores.terreno[15] == 'K' && !bikini) ||
+               (sensores.terreno[15] == 'D' && !zapatillas))&& sensores.superficie[15] == '_' ) || dir_cas15 > 0){
+        if(dir_cas15 == 0){
+            accion = actTURN_R;
+            dir_cas15++;
+        }else if (dir_cas15 <= 3){
+            if(sensores.terreno[2] != 'M') {
+                accion = actFORWARD;
+                dir_cas15++;
+            }else{
+                dir_cas15 = 0;
+            }
+        }else{
+            accion = actTURN_L;
+            dir_cas15 = 0;
+        }
+    }else if((((sensores.terreno[9] == 'G' && !bien_situado) || sensores.terreno[9] == 'X' || (sensores.terreno[9] == 'K' && !bikini) ||
+               (sensores.terreno[9] == 'D' && !zapatillas))&& sensores.superficie[9] == '_' ) || dir_cas15 > 0){
+        if(dir_cas9 == 0){
+            accion = actTURN_L;
+            dir_cas9++;
+        }else if (dir_cas9 <= 3){
+            if(sensores.terreno[2] != 'M') {
+                accion = actFORWARD;
+                dir_cas9++;
+            }else{
+                dir_cas9 = 0;
+            }
+        }else{
+            accion = actTURN_R;
+            dir_cas9 = 0;
+        }
+    }else /*if(porcentaje() > 50 && sensores.sentido == 0){
+        for()
+    }else*/ if(avanzadas >= 15 || sensores.terreno[2] == 'P' || sensores.terreno[2] == 'M' ||
             (sensores.terreno[2] == 'A' && !bikini /*&& sensores.bateria <= 4980*/) ||
             (sensores.terreno[2] == 'B' && !zapatillas /*&& sensores.bateria <= 4800*/)){
         avanzadas = 0;
@@ -272,12 +351,31 @@ Action ComportamientoJugador::think(Sensores sensores){
 	cout << "Colisión: " << sensores.colision << endl;
 	cout << "Reset: " << sensores.reset << endl;
 	cout << "Vida: " << sensores.vida << endl;
+    cout << "Porcentaje: " << porcentaje() << endl;
 	cout << endl;
 
 
 	// Determinar el efecto de la ultima accion enviada
 	ultimaAccion = accion;		//Recordamos última acción
 	return accion;
+}
+
+double ComportamientoJugador::porcentaje() {
+    double contar = 0.0;
+    double total = 0.0;
+    double resultado = 0.0;
+
+    for(int i = 0; i < mapaResultado.size(); i++){
+        for(int j = 0; j < mapaResultado.size(); j++){
+            if(mapaResultado[i][j] != '?')
+                contar++;
+        }
+    }
+
+    total = mapaResultado.size()*mapaResultado.size()*1.0;
+    resultado = (contar/total)*100;
+    return resultado;
+
 }
 
 int ComportamientoJugador::interact(Action accion, int valor){

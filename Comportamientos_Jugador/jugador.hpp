@@ -4,6 +4,7 @@
 #include "comportamientos/comportamiento.hpp"
 using namespace std;
 
+const int cant_bateria = 4000;
 class ComportamientoJugador : public Comportamiento{
 
   public:
@@ -16,7 +17,7 @@ class ComportamientoJugador : public Comportamiento{
       girar_derecha = false;
       avanzadas = 0;
       bien_situado = false;
-      dir_cas3 = dir_cas1 = saliendo = saliendo1 = 0;
+      dir_cas3 = dir_cas1 = dir_cas8 = dir_cas4 = dir_cas15 = dir_cas9 = saliendo = saliendo1 = 0;
       inicio_partida = true;
       bikini = zapatillas = false;
       cargado = true;
@@ -27,6 +28,7 @@ class ComportamientoJugador : public Comportamiento{
 
     Action think(Sensores sensores);
     int interact(Action accion, int valor);
+    double porcentaje();
 
   private:
   
@@ -35,10 +37,11 @@ class ComportamientoJugador : public Comportamiento{
   	Action ultimaAccion;
   	bool girar_derecha, bien_situado;
     int avanzadas;
-    int dir_cas3, dir_cas1, dir_cas, saliendo, saliendo1;
+    int dir_cas3, dir_cas1, dir_cas8, dir_cas4, dir_cas15, dir_cas9, saliendo, saliendo1;
     int cargado;
     bool inicio_partida;
     bool bikini, zapatillas;
+
 };
 
 #endif
