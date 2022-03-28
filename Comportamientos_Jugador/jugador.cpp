@@ -7,12 +7,29 @@ using namespace std;
 Action ComportamientoJugador::think(Sensores sensores){
     if(inicio_partida){
         int tam = mapaResultado.size();
-        for(int i = 0; i < tam; i++){
-            for(int j = 0; j < tam; j++){
+        for(int i = 0; i < tam; i++){                                   //Rellenará el mapaResultado de precipios,
+            for(int j = 0; j < tam; j++){                               //ya que es una mapa cerrado
                 if(i <= 2 || i >= tam-3 || j <= 2 || j >= tam-3){
                     mapaResultado[i][j] = 'P';
                 }
             }
+        }
+
+        //Elegimos el número de pasos que avanzará el jugador antes de girar
+        //dependiendo del mapa
+        n_avanzadas = 15;       //Por defecto 15
+        cant_bateria = 4000;
+        if(mapaResultado.size() <= 30) {
+            n_avanzadas = 5;
+            cant_bateria = 4000;
+        }else if(mapaResultado.size() > 30 && mapaResultado.size() <= 50) {
+            n_avanzadas = 15;
+            cant_bateria = 4500;
+        }else if(mapaResultado.size() > 50 && mapaResultado.size() <= 75)
+            n_avanzadas = 20;
+        else if(mapaResultado.size() > 75 && mapaResultado.size() <= 100) {
+            n_avanzadas = 20;
+            cant_bateria = 4500;
         }
 
         inicio_partida = false;
@@ -66,6 +83,9 @@ Action ComportamientoJugador::think(Sensores sensores){
         zapatillas = false;
     }
 
+    if(sensores.colision)
+        bien_situado = false;
+
 	if(sensores.terreno[0] == 'G' and !bien_situado){
 		fil = sensores.posF;
 		col = sensores.posC;
@@ -73,7 +93,7 @@ Action ComportamientoJugador::think(Sensores sensores){
 		bien_situado = true;
 	}
 
-	if(bien_situado){           //Pasarlo a for
+	if(bien_situado){
 		mapaResultado[fil][col] = sensores.terreno[0];
         if(sensores.sentido == 0) {                                         //Mirando al norte
             mapaResultado[fil-1][col-1] = sensores.terreno[1];
@@ -152,13 +172,10 @@ Action ComportamientoJugador::think(Sensores sensores){
 
 	//Decidir la nueva accion
     //Para ir a zonas no esploradas a partir de x porcentaje --> for(int i = col; i < size; i++)
-    if(((sensores.terreno[0] == 'B' && !zapatillas) || (sensores.terreno[0] == 'A' && !bikini) &&                       //Para salir de zonas rodeadas de agua/bosque
-        sensores.terreno[12] != 'B' && sensores.terreno[12] != 'A') && sensores.superficie[2] == '_') {
-        accion = actFORWARD;
-    }else if((sensores.terreno[3] == 'M' && sensores.terreno[7] != 'M' && sensores.terreno[7] != 'P' &&
+    if((sensores.terreno[3] == 'M' && sensores.terreno[7] != 'M' && sensores.terreno[13] == 'M' && sensores.terreno[7] != 'P' &&
         sensores.superficie[7] == '_' && sensores.terreno[2] != 'M') || saliendo > 0){
         if(saliendo <= 1) {             //Se hará dos veces
-            if(sensores.terreno[2] != 'M') {
+            if(sensores.terreno[2] != 'M' && sensores.superficie[2] == '_') {
                 accion = actFORWARD;
                 saliendo++;
             }else{
@@ -168,10 +185,10 @@ Action ComportamientoJugador::think(Sensores sensores){
             accion = actTURN_R;
             saliendo = 0;
         }
-    }else if((sensores.terreno[1] == 'M' && sensores.terreno[5] != 'M' && sensores.terreno[5] != 'P'
+    }else if((sensores.terreno[1] == 'M' && sensores.terreno[5] != 'M' && sensores.terreno[11] == 'M' && sensores.terreno[5] != 'P'
                && sensores.superficie[5] == '_' && sensores.terreno[2] != 'M') || saliendo1 > 0){
         if(saliendo1 <= 1) {             //Se hará dos veces
-            if(sensores.terreno[2] != 'M') {
+            if(sensores.terreno[2] != 'M' && sensores.superficie[2] == '_') {
                 accion = actFORWARD;
                 saliendo1++;
             }else{
@@ -182,14 +199,14 @@ Action ComportamientoJugador::think(Sensores sensores){
             saliendo1 = 0;
         }
     }else if((sensores.terreno[2] == 'X' || sensores.terreno[6]=='X' || sensores.terreno[12] =='X' || sensores.terreno[0] == 'X') && !cargado && sensores.superficie[2] == '_'){
-        if(sensores.terreno[0] != 'X')
+        if(sensores.terreno[0] != 'X' && sensores.terreno[2] != 'M' && sensores.superficie[2] == '_')
             accion = actFORWARD;
         else
             accion = actIDLE;
     }else if(((sensores.terreno[2] == 'G' || sensores.terreno[6] == 'G' || sensores.terreno[12] == 'G' && !bien_situado) ||
             (sensores.terreno[2] == 'K' || sensores.terreno[6] == 'K' || sensores.terreno[12] == 'K' && !bikini) ||
             (sensores.terreno[2] == 'D' || sensores.terreno[6] == 'D' || sensores.terreno[12] == 'D' && !zapatillas)) && sensores.superficie[2] == '_') {
-        if(sensores.terreno[2] != 'M')
+        if(sensores.terreno[2] != 'M' && sensores.superficie[2] == '_')
             accion = actFORWARD;
         else
             accion = actTURN_L;
@@ -203,7 +220,7 @@ Action ComportamientoJugador::think(Sensores sensores){
             accion = actTURN_R;
             dir_cas3++;
         }else if(dir_cas3 == 1){
-            if(sensores.terreno[2] != 'M') {
+            if(sensores.terreno[2] != 'M' && sensores.superficie[2] == '_') {
                 accion = actFORWARD;
                 dir_cas3++;
             }else{
@@ -223,7 +240,7 @@ Action ComportamientoJugador::think(Sensores sensores){
             accion = actTURN_L;
             dir_cas1++;
         } else if (dir_cas1 == 1) {
-            if(sensores.terreno[2] != 'M'){
+            if(sensores.terreno[2] != 'M' && sensores.superficie[2] == '_'){
                 accion = actFORWARD;
                 dir_cas1++;
             }else{
@@ -241,7 +258,7 @@ Action ComportamientoJugador::think(Sensores sensores){
             accion = actTURN_R;
             dir_cas8++;
         }else if (dir_cas8 <= 2){
-            if(sensores.terreno[2] != 'M') {
+            if(sensores.terreno[2] != 'M' && sensores.superficie[2] == '_') {
                 accion = actFORWARD;
                 dir_cas8++;
             }else{
@@ -259,7 +276,7 @@ Action ComportamientoJugador::think(Sensores sensores){
             accion = actTURN_L;
             dir_cas4++;
         }else if (dir_cas4 <= 2){
-            if(sensores.terreno[2] != 'M') {
+            if(sensores.terreno[2] != 'M' && sensores.superficie[2] == '_') {
                 accion = actFORWARD;
                 dir_cas4++;
             }else{
@@ -275,7 +292,7 @@ Action ComportamientoJugador::think(Sensores sensores){
             accion = actTURN_R;
             dir_cas15++;
         }else if (dir_cas15 <= 3){
-            if(sensores.terreno[2] != 'M') {
+            if(sensores.terreno[2] != 'M' && sensores.superficie[2] == '_') {
                 accion = actFORWARD;
                 dir_cas15++;
             }else{
@@ -291,7 +308,7 @@ Action ComportamientoJugador::think(Sensores sensores){
             accion = actTURN_L;
             dir_cas9++;
         }else if (dir_cas9 <= 3){
-            if(sensores.terreno[2] != 'M') {
+            if(sensores.terreno[2] != 'M' && sensores.superficie[2] == '_') {
                 accion = actFORWARD;
                 dir_cas9++;
             }else{
@@ -301,22 +318,74 @@ Action ComportamientoJugador::think(Sensores sensores){
             accion = actTURN_R;
             dir_cas9 = 0;
         }
-    }else /*if(porcentaje() > 50 && sensores.sentido == 0){
-        for()
-    }else*/ if(avanzadas >= 15 || sensores.terreno[2] == 'P' || sensores.terreno[2] == 'M' ||
-            (sensores.terreno[2] == 'A' && !bikini /*&& sensores.bateria <= 4980*/) ||
-            (sensores.terreno[2] == 'B' && !zapatillas /*&& sensores.bateria <= 4800*/)){
+    }else if(sensores.terreno[6] == 'B' && sensores.terreno[3] == 'B'){
+        accion = actTURN_R;
+    }else if((((sensores.terreno[0] == 'B' && !zapatillas) || (sensores.terreno[0] == 'A' && !bikini)) &&                       //Para salir de zonas rodeadas de agua/bosque
+             (sensores.terreno[12] != 'B' && sensores.terreno[12] != 'A') &&
+              (sensores.terreno[2] == 'B' || sensores.terreno[2] == 'A')) && sensores.superficie[2] == '_') {
+        accion = actFORWARD;
+    }else/* if(porcentaje() > 50 && bien_situado){
+        for(int i = fil; i > mapaResultado.size(); i--){
+            if(mapaResultado[i][col] == '?')
+                aux_zona++;
+        }
+        if(aux_zona > mayor_zona) {
+            mayor_zona = aux_zona;
+            ganador = 0;                //Norte
+        }
+        aux_zona = 0;
+
+        for(int i = fil; i < mapaResultado.size(); i++){
+            if(mapaResultado[i][col] == '?')
+                aux_zona++;
+        }
+        if(aux_zona > mayor_zona) {
+            mayor_zona = aux_zona;
+            ganador = 2;                //Sur
+        }
+        aux_zona = 0;
+
+        for(int i = col; i < mapaResultado.size(); i++){
+            if(mapaResultado[fil][i] == '?')
+                aux_zona++;
+        }
+        if(aux_zona > mayor_zona) {
+            mayor_zona = aux_zona;
+            ganador = 1;                //Este
+        }
+        aux_zona = 0;
+
+        for(int i = col; i > mapaResultado.size(); i--){
+            if(mapaResultado[fil][i] == '?')
+                aux_zona++;
+        }
+        if(aux_zona > mayor_zona) {
+            mayor_zona = aux_zona;
+            ganador = 3;                //Oeste
+        }
+        aux_zona = 0;
+
+        if(sensores.sentido == ganador)
+            if(sensores.terreno[2] != 'M' && sensores.terreno[2] != 'P')
+                accion = actFORWARD;
+            else accion = actTURN_L;
+        else if(sensores.sentido == ((ganador+3)%4))
+            accion = actTURN_R;
+        else if(sensores.sentido == ((ganador+1)%4))
+            accion = actTURN_L;
+        else
+            accion = actTURN_R;
+
+    }else */if(avanzadas >= n_avanzadas || sensores.terreno[2] == 'P' || sensores.terreno[2] == 'M' ||
+            (sensores.terreno[2] == 'A' && !bikini) || (sensores.terreno[2] == 'B' && !zapatillas)){
         avanzadas = 0;
         if(girar_derecha)
             accion = actTURN_R;
         else
             accion = actTURN_L;
-
-    }else if((sensores.terreno[2] == 'T' || sensores.terreno[2] == 'S' || sensores.terreno[2] == 'G' ||
+    }else if(((sensores.terreno[2] == 'T' || sensores.terreno[2] == 'S' || sensores.terreno[2] == 'G' ||
             sensores.terreno[2] == 'D' || sensores.terreno[2] == 'K' || sensores.terreno[2] == 'X' ||
-            (sensores.terreno[2] == 'B' && zapatillas) || (sensores.terreno[2] == 'A' && bikini) /*||
-            (sensores.terreno[2] == 'B' && !zapatillas && sensores.bateria >=4800) ||
-            (sensores.terreno[2] == 'A' && !bikini && sensores.bateria >=4980)*/) && sensores.superficie[2] == '_'){
+            (sensores.terreno[2] == 'B' && zapatillas) || (sensores.terreno[2] == 'A' && bikini))&& sensores.superficie[2] == '_')){
 		accion = actFORWARD;
         avanzadas++;
 	}/*else if((sensores.terreno[2] == 'B' and zapatillas) and sensores.superficie[2] == '_'){
